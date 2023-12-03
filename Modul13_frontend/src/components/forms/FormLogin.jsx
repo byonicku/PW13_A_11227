@@ -50,6 +50,7 @@ const FormLogin = () => {
                 </p>
                 <p className="mb-0">Selamat datang. Silakan masuk ke akun Anda.</p>
             </Alert>
+
             <InputFloatingForm
                 label="Email"
                 placeholder="Masukkan Email"
@@ -57,6 +58,7 @@ const FormLogin = () => {
                 type="email"
                 onChange={handleChange}
             />
+
             <InputFloatingForm
                 label="Password"
                 placeholder="Masukkan Password"
@@ -78,7 +80,7 @@ const FormLogin = () => {
                 )}
             </Button>
             <p className="text-end mt-2">
-                Don't have an Account? <Link to="/register">Click Here!</Link>
+                Don`t have an Account? <Link to="/register">Click Here!</Link>
             </p>
         </Form>
     );
