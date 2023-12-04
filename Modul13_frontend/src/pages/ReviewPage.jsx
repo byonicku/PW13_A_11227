@@ -21,41 +21,32 @@ function ReviewPage() {
         setIsPending(true);
         CreateReview(data)
           .then(() => {
-            setIsPending(false);            
+            setIsPending(false);
             fetchReview();
+            toast.success("Review Added");
           })
           .catch((err) => {
             console.log(err);
             setIsPending(false);
-            toast.dark(err.message);
+            toast.error(err.message);
           });
       };
 
-      const deleteReview = (id) => {
-        setIsPending(true);
-        DeleteReview(id)
-            .then((response) => {
-                setIsPending(false);
-                toast.success(response.message);
-                fetchReview();
-            })
-            .catch((err) => {
-                console.log(err);
-                setIsPending(false);
-                toast.dark(err.message);
-            });
-    };
-
     function handleChange ( event ) {
         event.preventDefault();
+
+        if (user.id === state.content.id_user) {
+            toast.error("You are not allowed to review your own content");
+            return;
+        }
 
         if (review === "") {
             toast.error("Review tidak boleh kosong!");
             return;
         }
 
-        createReview({ idContent: state.content.id, comment: review });
-        toast.success("Review Added");
+        setReview("");
+        createReview({ idContent: state.content.id, comment: review });        
     }
 
     const fetchReview = () => {
@@ -164,20 +155,20 @@ function ReviewPage() {
                             reviews?.map((review) => (                                
                                 <Card className="mb-3 bg-transparent" key={review.id}>
                                     <Row className="align-items-center">
-                                        <Col md={2}>
+                                        <Col md={2} className="text-center">
                                             <img
                                                 src={avatar}
-                                                className="card-img w-100 img-fluid object-fit-fit"
+                                                className="card-img w-50 img-fluid py-3 rounded-circle"
                                                 alt="..."
                                             />
                                         </Col>
                                         <Col md={9}>
                                             <CardBody>
-                                                <h5 className="card-title text-truncate">@{review.user.handle}</h5>
+                                                <h5 className="card-title text-truncate fw-bold">@{review.user.handle}</h5>
                                                 <p className="card-text">{review.comment}</p>
                                             </CardBody>
                                         </Col>
-                                        {isPending ? (
+                                        {isPending && user.id === review.user.id ? (
                                             <Col md={1}>
                                                 <Button variant="danger" disabled>
                                                     <Spinner
