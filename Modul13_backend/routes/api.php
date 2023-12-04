@@ -22,6 +22,9 @@ Route::post('/register',[App\Http\Controllers\Api\AuthController::class,'registe
 Route::post('/login',[App\Http\Controllers\Api\AuthController::class,'login']);
 
 Route::middleware('auth:api')->group(function(){
+    Route::get('/user/{id}',[App\Http\Controllers\Api\AuthController::class,'show']);
+    Route::put('/user/{id}',[App\Http\Controllers\Api\AuthController::class,'update']);
+
     Route::get('/contents',[App\Http\Controllers\Api\ContentController::class,'index']);
     Route::post('/contents',[App\Http\Controllers\Api\ContentController::class,'store']);
     Route::get('/contents/{id}',[App\Http\Controllers\Api\ContentController::class,'show']);

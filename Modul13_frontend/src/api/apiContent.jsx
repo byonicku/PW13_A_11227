@@ -117,7 +117,9 @@ export const CreateReview = async (data) => {
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },
     });
-    console.log(response);
+    
+    if (response)
+
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -133,6 +135,38 @@ export const DeleteReview = async (id) => {
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },
     });
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+
+// Update profile
+export const UpdateProfile = async (values) => {
+  try {
+    const response = await useAxios.put(`/user/${values.id}`, values, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+
+// show profile
+export const ShowProfile = async (id) => {
+  try {
+    const response = await useAxios.get(`/user/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    });
+
     return response.data;
   } catch (error) {
     throw error.response.data;

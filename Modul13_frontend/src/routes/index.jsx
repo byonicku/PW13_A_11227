@@ -7,6 +7,7 @@ import DashboardPage from "../pages/DashboardPage";
 import ContentPage from "../pages/ContentPage";
 import ProtectedRoutes from "./ProtectedRoutes";
 import ReviewPage from "../pages/ReviewPage";
+import ProfilePage from "../pages/ProfilePage";
 
 const router = createBrowserRouter([
   { path: "*", element: <div>Routes Not Found!</div> },
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
       { path: "/user", element: <DashboardPage /> },
       { path: "/user/content", element: <ContentPage /> },
       { path: "/user/review", element: <ReviewPage />},
+      { path: "/user/profile", element: <ProfilePage />}
     ],
   },
 ]);

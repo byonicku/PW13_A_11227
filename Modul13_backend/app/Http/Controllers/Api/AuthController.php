@@ -40,7 +40,7 @@ class AuthController extends Controller
         $loginData = $request->all();
 
         $validate = Validator::make($loginData, [
-            'email' => 'required|email',
+            'email' => 'required|email:rfc,dns',
             'password' => 'required|min:8',
         ]);
 
@@ -61,6 +61,55 @@ class AuthController extends Controller
             'token_type' => 'Bearer',
             'access_token' => $token
         ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $updateData = $request->all();
+
+        $validate = Validator::make($updateData, [
+            'name' => 'required|max:60',
+            'handle' => 'required|max:20',
+            'email' => 'required|email:rfc,dns',
+            'bio' => 'required|max:255',
+        ]);
+
+        if ($validate->fails()) {
+            return response(['message' => $validate->errors()->first()], 400);
+        }
+
+        $user = User::find($id);
+
+        if (!$user) {
+            return response([
+                'message' => 'User Not Found',
+                'data' => null
+            ], 404);
+        }
+
+        $user->update($updateData);
+
+        return response([
+            'message' => 'Update Success',
+            'user' => $user
+        ], 200);
+    }
+
+    public function show($id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            return response([
+                'message' => 'User Not Found',
+                'data' => null
+            ], 404);
+        }
+
+        return response([
+            'message' => 'User Found',
+            'user' => $user
+        ], 200);
     }
 
     public function logout(Request $request)

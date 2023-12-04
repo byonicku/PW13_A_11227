@@ -4,6 +4,7 @@ import TopNavbar from "../components/TopNavbar"; //mengatur route yang akan dita
 const routes = [
     { path: "/user", name: "Home" },
     { path: "/user/content", name: "My Videos" },
+    { path: "/user/profile", name: "Profile" },
 ];
 
 const UserLayout = ({ children }) => {
