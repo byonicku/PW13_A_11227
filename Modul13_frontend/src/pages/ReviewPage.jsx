@@ -159,7 +159,7 @@ function ReviewPage() {
                                             <img
                                                 src={avatar}
                                                 className="card-img w-50 img-fluid py-3 rounded-circle"
-                                                alt="..."
+                                                alt="User Avatar"
                                             />
                                         </Col>
                                         <Col md={9}>
