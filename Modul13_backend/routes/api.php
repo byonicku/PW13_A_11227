@@ -29,4 +29,8 @@ Route::middleware('auth:api')->group(function(){
     Route::delete('/contents/{id}',[App\Http\Controllers\Api\ContentController::class,'destroy']);
 
     Route::get('/contents/user/{id}',[App\Http\Controllers\Api\ContentController::class,'showContentbyUser']);
+
+    Route::post('/review', [App\Http\Controllers\Api\ReviewController::class, 'store']);
+    Route::get('/review/{id}', [App\Http\Controllers\Api\ReviewController::class, 'show']);
+    Route::delete('/review/{id}', [App\Http\Controllers\Api\ReviewController::class, 'destroy']);
 });

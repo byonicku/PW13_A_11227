@@ -40,9 +40,10 @@ class AuthController extends Controller
         $loginData = $request->all();
 
         $validate = Validator::make($loginData, [
-            'email' => 'required|email:rfc,dns',
+            'email' => 'required|email',
             'password' => 'required|min:8',
         ]);
+
         if ($validate->fails()) {
             return response(['message' => $validate->errors()->first()], 400);
         }
@@ -50,6 +51,7 @@ class AuthController extends Controller
         if (!Auth::attempt($loginData)) {
             return response(['message' => 'Invalid email & password match'], 401);
         }
+
         $user = Auth::user();
         $token = $user->createToken('Authentication Token')->accessToken;
 

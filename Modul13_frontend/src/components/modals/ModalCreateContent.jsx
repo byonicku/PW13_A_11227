@@ -12,15 +12,19 @@ const ModalCreateContent = ({
   const [data, setData] = useState({ title: "", description: "" });
   const [isPending, setIsPending] = useState(false);
   const [thumbnail, setThumbnail] = useState(null);
+
   const handleClose = () => {
     setShow(false);
     setThumbnail(null);
     onClose();
   };
+
   const handleShow = () => setShow(true);
+
   const handleChange = (event) => {
     setData({ ...data, [event.target.name]: event.target.value });
   };
+  
   const submitData = (event) => {
     event.preventDefault();
     setIsPending(true);
@@ -40,9 +44,11 @@ const ModalCreateContent = ({
         toast.dark(JSON.stringify(err.message));
       });
   };
+
   const handleThumbnail = (event) => {
     setThumbnail(event.target.files[0]);
   };
+  
   return (
     <>
       <Button variant="light" onClick={handleShow}>

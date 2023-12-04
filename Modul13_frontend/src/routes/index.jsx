@@ -6,6 +6,7 @@ import RegisterPage from "../pages/auth/RegisterPage";
 import DashboardPage from "../pages/DashboardPage";
 import ContentPage from "../pages/ContentPage";
 import ProtectedRoutes from "./ProtectedRoutes";
+import ReviewPage from "../pages/ReviewPage";
 
 const router = createBrowserRouter([
   { path: "*", element: <div>Routes Not Found!</div> },
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/user", element: <DashboardPage /> },
       { path: "/user/content", element: <ContentPage /> },
+      { path: "/user/review", element: <ReviewPage />},
     ],
   },
 ]);
