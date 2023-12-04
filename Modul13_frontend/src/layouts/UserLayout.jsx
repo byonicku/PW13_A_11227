@@ -14,4 +14,5 @@ const UserLayout = ({ children }) => {
         </div>
     );
 };
+
 export default UserLayout;
